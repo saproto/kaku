@@ -10,7 +10,7 @@ var port = process.env.PORT;
 
 app.get('/lampOn', function (req, res) {
    if(req.query.secret == secretAccessKey) {
-     exec('/home/pi/kaku/kaku ' + req.query.lamp + ' C on', function(error, stdout, stderr) {
+     exec('./kaku ' + req.query.lamp + ' A on', function(error, stdout, stderr) {
  
  if (!error) {
     // print the output
@@ -27,7 +27,7 @@ app.get('/lampOn', function (req, res) {
 
 app.get('/lampOff', function (req, res) {
    if(req.query.secret == secretAccessKey) {
-     exec('/home/pi/kaku/kaku ' + req.query.lamp +' C off', function(error, stdout, stderr) {
+     exec('./kaku ' + req.query.lamp +' A off', function(error, stdout, stderr) {
   if (!error) {
     // print the output
    // sys.puts(stdout);
@@ -42,5 +42,5 @@ app.get('/lampOff', function (req, res) {
 })
 
 app.listen(port, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Example app listening on port '+port+'!')
 })
