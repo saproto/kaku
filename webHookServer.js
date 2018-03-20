@@ -72,17 +72,23 @@ const parser = new parsers.Readline({
 
 var ports = [];
 var idx = 0;
+var arduinoId = -1;
 
 serialport.list(function (err, p) {
   p.forEach(function(p) {
-    
+    var name = p.manufacturer;
+    if(typeof name != 'undefined'){
+       if(name.includes("Arduino")){
+	   arduinoId = idx;
+       }
+    }
     console.log(' [' + idx + '] ' + p.comName);
     ports.push(p.comName);    
     idx++;
   });
 
-if(ports.length > 1){
-var port = new serialport(ports[1], {
+if(arduinoId != -1){
+var port = new serialport(ports[arduinoId], {
 	baudRate: 9600
         });
 
