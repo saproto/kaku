@@ -81,8 +81,8 @@ serialport.list(function (err, p) {
     idx++;
   });
 
-if(ports.length > 2){
-var port = new serialport(ports[2], {
+if(ports.length > 1){
+var port = new serialport(ports[1], {
 	baudRate: 9600
         });
 
